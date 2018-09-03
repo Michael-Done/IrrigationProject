@@ -1,15 +1,21 @@
 ## test file for testing things
-import time
+from time import sleep
 from gpiozero import LED, LineSensor
 from signal import pause
-pump = LED(2)
-water = LineSensor(23)
-water_indicator = LED(24)
+pump = LED(4)
+valve_1 = LED(2)
+valve_2 = LED(3)
 
-def on():
+water = LineSensor(23)
+
+valve_1.off()
+valve_2.off()
+pump.off()
+
+def pumpOn():
     pump.on()
 
-def off():
+def pumpOff():
     pump.off()
 
 def wet():
@@ -20,9 +26,11 @@ def dry():
     print("dry")
     water_indicator.off()
 
-water.when_line = dry
-water.when_no_line = wet
+##water.when_line = dry
+##water.when_no_line = wet
 
-off()
-pause()
+pumpOff()
+valve_1.off()
+valve_2.off()
+
 
